@@ -79,25 +79,25 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
 
                         return View(viewModel);
                     }
-                   /* public ActionResult Following()
-                    {
-                        var userId = User.Identity.GetUserId();
-                        var followings = _dbContext.Followings
-                            .Where(a => a.FolloweeId == userId)
-                            .Select(a => a.Follower)
-                            .ToList();
-
-                        var viewModel = new ForgotViewModel
+                        [Authorize]
+                        public ActionResult Following()
                         {
-                            Followings = followings,
-                            ShowAction = User.Identity.IsAuthenticated
-                        };
+                            var userId = User.Identity.GetUserId();
+                            var followings = _dbContext.Followings
+                                .Where(a => a.FolloweeId == userId)
+                                .Select(a => a.Follower)
+                                .ToList();
 
-                        return View(viewModel);
-                    }*/
+                            var viewModel = new FollowingViewModel
+                            {
+                                Followings = followings,
+                                ShowAction = User.Identity.IsAuthenticated
+                            };
 
+                            return View(viewModel);
+                        }
 
-                    public ActionResult Mine()
+        public ActionResult Mine()
                     {
                         var userId = User.Identity.GetUserId();
                         var courses = _dbContext.Courses

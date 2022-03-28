@@ -1,0 +1,50 @@
+﻿@model _1911065673_NguyenDucThong_BigSchool.ViewModels.FollowingViewModel
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<h2>Lecture I'm Flowing</h2>
+
+<div class="row">
+    <ul class="course">
+        @foreach (var follow in Model.Followings)
+        {
+            <li>
+                <div class="details">
+                    <span class="lecturer">
+                        @follow.Name
+                    </span>
+                </div>
+                <a href="#" data-followee-id="@follow.Id" data-follower-id="@User.Identity.GetUserId()" class="js-unfollow">UnFollow</a>
+            </li>
+        }
+    </ul>
+</div>
+
+@section scripts{
+    <script>
+        $('.js-unfollow').click(function () {
+            var link = $(this);
+            bootbox.confirm("Are you sure to cancel?", function () {
+                var followeeId = link.attr('data-followee-id');
+                var followerId = link.attr('data-follower-id');
+                //$.post('/api/Followings/UnFollow', { FollowerId: followerId, FolloweeId: followeeId }).done(function () {
+                //    link.remove();
+                //}).fail(function () { alert('something failed!') });
+                $.ajax({
+                    url: "/api/unfollow/" + followerId + "/" + followeeId,
+                    method: "DELETE"
+                }).done(function () {
+                    link.parents("li").fadeOut(function () {
+                        this.remove();
+                    });
+                }).fail(function () {
+                    alert("Something failed");
+                });
+            });
+        });
+    </script>
+}
+

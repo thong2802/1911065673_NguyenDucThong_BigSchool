@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity;
+@model _1911065673_NguyenDucThong_BigSchool.ViewModels.FollowingViewModel
+@{
+    ViewBag.Title = "FollowingMeList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FollowingMeList</h2>
+<div class="row">
+    <ul class="course">
+        @foreach (var follow in Model.Followings)
+        {
+            <li>
+                <div class="details">
+                    <span class="lecturer">
+                        @follow.Name &#128081;
+                    </span>
+                </div>
+                <a><br /></a>
+            </li>
+        }
+    </ul>
+</div>

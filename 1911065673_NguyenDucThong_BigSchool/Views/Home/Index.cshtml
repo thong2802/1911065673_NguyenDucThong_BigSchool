@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <ul class="course">
     @foreach (var course in Model.UpcomingCourse)
     {
@@ -19,18 +20,14 @@
             <div class="details">
                 <span class="lecturer">
                     @course.Lecturer.Name
-                    @if (Model.ShowAction)
-                    {
-                        <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
-                    }
+                     <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>    
                 </span>
                 <span class="category">
                     @course.Category.Name
                 </span>
-                @if (Model.ShowAction)
-                {
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"> Going?</button>
-                }
+              
+                <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance"> Going?</button>
+                
             </div>
         </li>
     }
@@ -58,9 +55,7 @@
                 $.post("/api/followings", { followeeId: button.attr("data-user-id") })
                     .done(function () {
                         button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("following");
+                            .text("Following");
                     })
                     .fail(function () {
                         alert("Something failed !");

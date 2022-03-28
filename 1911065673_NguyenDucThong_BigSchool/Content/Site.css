@@ -25,6 +25,7 @@ textarea {
 
 .course {
     list-style: none;
+    margin-top:30px;
 }
 
     .course > li {
@@ -49,8 +50,23 @@ textarea {
         .course > li .action {
             position: absolute;
             left: 70px;
+            bottom: 0px;
         }
 
         .course > li:hover .action {
             display: block;
         }
+
+.action {
+   
+}
+.btn {
+    background-color: #d41d50;
+    border: none;
+    color: white;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
