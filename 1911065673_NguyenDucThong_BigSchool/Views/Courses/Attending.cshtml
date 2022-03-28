@@ -1,40 +1,40 @@
-﻿@model _1911065673_NguyenDucThong_BigSchool.ViewModels.CoursesViewModel
+﻿@model _1911065673_NguyenDucThong_BigSchool.ViewModels.CourseViewModel
 @using Microsoft.AspNet.Identity;
 @using _1911065673_NguyenDucThong_BigSchool.Models;
+
 @{
     ViewBag.Title = "Attending";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<link href="~/Content/Site.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <h2>Attending</h2>
-<div class="row">
-    <ul class="course">
-        @foreach (var course in Model.UpcommingCourses)
-        {
-            <li>
-                <div class="date">
-                    <div class="month">
-                        @course.DateTime.ToString("dd-MM")
-                        <small> @course.DateTime.ToString("yyyy")</small>
-                    </div>
-                    <div class="day">
-                        <small>@course.DateTime.ToString("HH:mm")</small>
-                    </div>
+
+<ul class="course">
+    @foreach (var course in Model.UpcomingCourse)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @course.DateTime.ToString("MM")
                 </div>
-                <div class="details">
-                    <span class="lecturer" style="font-weight:bold">
-                        @course.Lecturer.Name
-                    </span>
-                    <span class="category">
-                        @course.Category.Name
-                    </span>
+                <div class="day">
+                    @course.DateTime.ToString("dd")
+                </div>
+            </div>
+            <div class="details">
+                <span class="lecturer">
+                    Tên: @course.Lecturer.Name
+                </span>
+
+                <span class="category">
+                    <br />
+                    Môn: @course.Category.Name
                     @if (Model.ShowAction)
                     {
                         var User_ID = User.Identity.GetUserId();
                         ApplicationDbContext _dbContext = new ApplicationDbContext();
                         bool isGoing = _dbContext.Attendances.Any(a => a.CourseId == course.Id && a.AttendeeId == User_ID);
-
                         if (isGoing)
                         {
                             <button data-course-id="@course.Id" class="btn btn-info btn-sm js-toggle-attendance">Going</button>
@@ -43,16 +43,12 @@
                         {
                             <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
                         }
-
                     }
-                </div>
-
-            </li>
-        }
-
-    </ul>
-</div>
-
+                </span>
+            </div>
+        </li>
+    }
+</ul>
 @section scripts
 {
     <script>

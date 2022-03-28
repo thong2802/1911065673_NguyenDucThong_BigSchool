@@ -97,7 +97,7 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
                             return View(viewModel);
                         }
 
-        public ActionResult Mine()
+                    public ActionResult Mine()
                     {
                         var userId = User.Identity.GetUserId();
                         var courses = _dbContext.Courses
@@ -151,7 +151,7 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
                         _dbContext.SaveChanges();
 
                         return RedirectToAction("Index", "Home");
-                    }
+         }
 
     }
 }

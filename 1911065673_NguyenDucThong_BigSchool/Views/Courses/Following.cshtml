@@ -1,50 +1,58 @@
-﻿@model _1911065673_NguyenDucThong_BigSchool.ViewModels.FollowingViewModel
-@using Microsoft.AspNet.Identity;
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<_1911065673_NguyenDucThong_BigSchool.Models.ApplicationUser>
 @{
     ViewBag.Title = "Following";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/Site.css" rel="stylesheet" />
-<h2>Lecture I'm Flowing</h2>
+<h2>Following</h2>
 
-<div class="row">
-    <ul class="course">
-        @foreach (var follow in Model.Followings)
-        {
-            <li>
-                <div class="details">
-                    <span class="lecturer">
-                        @follow.Name
-                    </span>
-                </div>
-                <a href="#" data-followee-id="@follow.Id" data-follower-id="@User.Identity.GetUserId()" class="js-unfollow">UnFollow</a>
-            </li>
-        }
-    </ul>
-</div>
+<ul>
+    @foreach (var viewModel in @Model)
+    {
+        <li>
+            <span style="font-weight:bold">@viewModel.Name</span>
+            <button class="btn btn-info btn-sm js-toggle-follow" data-user-id="@viewModel.Id">
+                Following
+            </button>
+            <br />
+            <br />
+        </li>
 
-@section scripts{
+    }
+</ul>
+@section scripts
+{
     <script>
-        $('.js-unfollow').click(function () {
-            var link = $(this);
-            bootbox.confirm("Are you sure to cancel?", function () {
-                var followeeId = link.attr('data-followee-id');
-                var followerId = link.attr('data-follower-id');
-                //$.post('/api/Followings/UnFollow', { FollowerId: followerId, FolloweeId: followeeId }).done(function () {
-                //    link.remove();
-                //}).fail(function () { alert('something failed!') });
-                $.ajax({
-                    url: "/api/unfollow/" + followerId + "/" + followeeId,
-                    method: "DELETE"
-                }).done(function () {
-                    link.parents("li").fadeOut(function () {
-                        this.remove();
-                    });
-                }).fail(function () {
-                    alert("Something failed");
-                });
+        $(document).ready(function () {
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                if (button.hasClass("btn-default")) {
+                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Following");
+                        })
+                        .fail(function () {
+                            alert("Something failed!");
+                        });
+                }
+                else {
+                    $.ajax({
+                        url: "/api/followings/" + button.attr("data-user-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Follow");
+                        })
+                        .fail(function () {
+                            alert("Something failed! (2)");
+                        });
+                }
             });
         });
     </script>
 }
-

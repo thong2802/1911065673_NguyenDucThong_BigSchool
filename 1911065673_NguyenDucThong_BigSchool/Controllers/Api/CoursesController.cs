@@ -11,7 +11,7 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers.Api
 {
     public class CoursesController : ApiController
     {
-        ApplicationDbContext _dbContext { get; set; }
+        public ApplicationDbContext _dbContext { get; set; }
 
         public CoursesController()
         {
@@ -23,19 +23,12 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
-
-
             if (course.IsCanceled)
-            {
                 return NotFound();
-            }
-
             course.IsCanceled = true;
-
             _dbContext.SaveChanges();
 
             return Ok();
-
         }
     }
 }

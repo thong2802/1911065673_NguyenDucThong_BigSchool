@@ -13,6 +13,8 @@ namespace _1911065673_NguyenDucThong_BigSchool.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Following> Followings { get; set; }
+        public object FollowingNotification { get; internal set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

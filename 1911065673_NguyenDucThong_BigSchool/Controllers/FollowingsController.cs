@@ -38,16 +38,18 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
             _DbContext.SaveChanges();
             return Ok();
         }
-        [System.Web.Http.HttpDelete]
-        public IHttpActionResult DeleteFollowings(string id)
+        [HttpDelete]
+        public IHttpActionResult DeleteFollow(string Id)
         {
             var userId = User.Identity.GetUserId();
-            var following = _DbContext.Followings.SingleOrDefault(a => a.FollowerId == userId && a.FolloweeId.Contains(id));
+            var following = _DbContext.Followings.SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == Id);
             if (following == null)
+            {
                 return NotFound();
+            }
             _DbContext.Followings.Remove(following);
             _DbContext.SaveChanges();
-            return Ok(id);
+            return Ok(Id);
         }
     }
 }
