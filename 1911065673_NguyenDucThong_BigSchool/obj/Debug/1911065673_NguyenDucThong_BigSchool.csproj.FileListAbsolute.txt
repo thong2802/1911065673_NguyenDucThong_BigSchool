@@ -118,3 +118,4 @@ C:\Users\PC\Desktop\LAB456\1911065673_NguyenDucThong_BigSchool\1911065673_Nguyen
 C:\Users\PC\Desktop\LAB456\1911065673_NguyenDucThong_BigSchool\1911065673_NguyenDucThong_BigSchool\bin\System.Net.Http.Formatting.xml
 C:\Users\PC\Desktop\LAB456\1911065673_NguyenDucThong_BigSchool\1911065673_NguyenDucThong_BigSchool\bin\System.Web.Http.xml
 C:\Users\PC\Desktop\LAB456\1911065673_NguyenDucThong_BigSchool\1911065673_NguyenDucThong_BigSchool\bin\System.Web.Http.WebHost.xml
+C:\Users\PC\Desktop\LAB456\1911065673_NguyenDucThong_BigSchool\1911065673_NguyenDucThong_BigSchool\obj\Debug\_1911065673_NguyenDucThong_BigSchool.Migrations.AddFollowingsTable.resources

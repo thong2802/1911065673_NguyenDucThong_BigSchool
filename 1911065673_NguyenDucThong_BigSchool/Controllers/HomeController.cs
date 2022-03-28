@@ -9,6 +9,7 @@ using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 namespace _1911065673_NguyenDucThong_BigSchool.Controllers
 {
+
     public class HomeController : Controller
     {
         private ApplicationDbContext _dbContext;

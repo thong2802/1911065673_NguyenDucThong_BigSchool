@@ -58,7 +58,7 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
                 _dbContext.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-        /*
+        
                     [Authorize]
                     public ActionResult Attending()
                     {
@@ -68,18 +68,18 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
                             .Select(a => a.Course)
                             .Include(l => l.Lecturer)
                             .Include(l => l.Category)
-                            .Where(a => a.IsCanceled == false)
+                     
                             .ToList();
 
-                        var viewModel = new CoursesViewModel
+                        var viewModel = new CourseViewModel
                         {
-                            UpcommingCourses = courses,
+                            UpcomingCourse = courses,
                             ShowAction = User.Identity.IsAuthenticated
                         };
 
                         return View(viewModel);
                     }
-                    public ActionResult Following()
+                   /* public ActionResult Following()
                     {
                         var userId = User.Identity.GetUserId();
                         var followings = _dbContext.Followings
@@ -87,14 +87,14 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
                             .Select(a => a.Follower)
                             .ToList();
 
-                        var viewModel = new FollowingViewModel
+                        var viewModel = new ForgotViewModel
                         {
                             Followings = followings,
                             ShowAction = User.Identity.IsAuthenticated
                         };
 
                         return View(viewModel);
-                    }
+                    }*/
 
 
                     public ActionResult Mine()
@@ -152,7 +152,6 @@ namespace _1911065673_NguyenDucThong_BigSchool.Controllers
 
                         return RedirectToAction("Index", "Home");
                     }
-        */
 
     }
 }
